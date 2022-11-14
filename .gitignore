@@ -1,0 +1,8 @@
+
+*.xml
+*.iml
+.DS_Store
+Task_0/.idea/misc.xml
+Task_0/.idea/modules.xml
+Task_0/.idea/vcs.xml
+Task_0/Task_0.iml
