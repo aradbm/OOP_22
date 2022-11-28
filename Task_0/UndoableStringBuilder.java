@@ -5,7 +5,7 @@ import java.util.Stack;
  * @author Arad Ben Menashe & Neta Cohen
  * @version 1.0.0
  */
-public class UndoableStringBuilder {
+public class UndoableStringBuilder { 
     private StringBuilder STR;
     private Stack<StringBuilder> STR_STACK;
 
