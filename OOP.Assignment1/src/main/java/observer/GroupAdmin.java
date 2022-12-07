@@ -8,15 +8,15 @@ import java.util.List;
  * @version 1.0.0
  */
 public class GroupAdmin implements Sender {
-    List<Member> members;
-    UndoableStringBuilder usb;
+    private List<Member> members;
+    private UndoableStringBuilder usb;
 
     /**
      * Constructor
      */
     public GroupAdmin() {
         this.members = new LinkedList<>();
-        usb = new UndoableStringBuilder();
+        this.usb = new UndoableStringBuilder();
     }
 
     /**
@@ -25,7 +25,6 @@ public class GroupAdmin implements Sender {
     public void updateMembers() {
         for (Member o : this.members) {
             o.update(usb);
-
         }
     }
 
@@ -36,8 +35,12 @@ public class GroupAdmin implements Sender {
      */
     @Override
     public void register(Member obj) {
-        members.add(obj);
-        obj.update(usb);
+        if (members.contains(obj)) {
+            System.out.println("This member already exist in the members list.");
+        } else {
+            members.add(obj);
+            obj.update(usb);
+        }
     }
 
     /**
@@ -47,7 +50,12 @@ public class GroupAdmin implements Sender {
      */
     @Override
     public void unregister(Member obj) {
-        members.remove(obj);
+        if (members.contains(obj)) {
+            obj.update(new UndoableStringBuilder()); // stops the member from pointing to GroupAdmin's usb.
+            members.remove(obj);
+        } else {
+            System.err.println("This member already isn't a member.");
+        }
     }
 
     /**
