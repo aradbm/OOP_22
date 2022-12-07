@@ -30,4 +30,13 @@ public class ConcreteMember implements Member {
     public void update(UndoableStringBuilder usb) {
         this.usb = usb;
     }
+
+    /**
+     * This method returns the corrent usb
+     * 
+     * @return this UndoableStringBuilder
+     */
+    public UndoableStringBuilder getUsb() {
+        return usb;
+    }
 }
