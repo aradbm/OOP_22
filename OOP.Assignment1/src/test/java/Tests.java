@@ -1,3 +1,5 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
@@ -8,15 +10,8 @@ import observer.GroupAdmin;
 public class Tests {
     public static final Logger logger = LoggerFactory.getLogger(Tests.class);
 
-    // stub method to check external dependencies compatibility
-
     @Test
     public void TestGroupAdmin() {
-
-    }
-
-    @Test
-    public void TestConcreteMember() {
         GroupAdmin gad = new GroupAdmin();
         gad.append("hello world");
         ConcreteMember cr1 = new ConcreteMember(gad);
@@ -27,24 +22,29 @@ public class Tests {
         gad.register(cr2);
         gad.register(cr3);
         gad.register(cr4);
-        logger.info(() -> JvmUtilities.objectFootprint(cr1));
-        logger.info(() -> JvmUtilities.objectFootprint(cr1, cr2));
-        logger.info(() -> JvmUtilities.objectTotalSize(cr1));
-        logger.info(() -> JvmUtilities.objectTotalSize(cr1, cr2));
-        logger.info(() -> JvmUtilities.jvmInfo());
+        gad.register(cr4);
+
+        assertEquals(cr2.getUsb().toString(), "hello world");
+        gad.unregister(cr4);
+        gad.delete(2, 4);
+        gad.append("!");
+        assertEquals(cr3.getUsb().toString(), "heo world!");
+        assertEquals("", cr4.getUsb().toString());
+        assertEquals(cr2.getUsb(), cr1.getUsb());
+        gad.unregister(cr2);
+
+        // logger.info(() -> JvmUtilities.objectFootprint(cr4));
+        // logger.info(() -> (cr4.getUsb().toString()));
+        // logger.info(() -> JvmUtilities.objectFootprint(cr1));
+        // logger.info(() -> JvmUtilities.objectFootprint(cr2));
+        // logger.info(() -> JvmUtilities.objectTotalSize(cr1));
+        // logger.info(() -> JvmUtilities.objectTotalSize(cr2));
+        // logger.info(() -> JvmUtilities.objectTotalSize(cr1, cr2));
+        // logger.info(() -> JvmUtilities.jvmInfo());
     }
 
     @Test
-    public void test() {
-        String s1 = "Alice";
-        String s2 = "Bob";
+    public void TestConcreteMember() {
 
-        logger.info(() -> JvmUtilities.objectFootprint(s1));
-
-        logger.info(() -> JvmUtilities.objectFootprint(s1, s2));
-
-        logger.info(() -> JvmUtilities.objectTotalSize(s1));
-
-        logger.info(() -> JvmUtilities.jvmInfo());
     }
 }
