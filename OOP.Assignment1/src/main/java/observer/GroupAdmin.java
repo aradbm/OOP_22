@@ -51,7 +51,7 @@ public class GroupAdmin implements Sender {
     @Override
     public void unregister(Member obj) {
         if (members.contains(obj)) {
-            obj.update(new UndoableStringBuilder()); // stops the member from pointing to GroupAdmin's usb.
+            // obj.update(new UndoableStringBuilder()); // stops the member from pointing to GroupAdmin's usb.
             members.remove(obj);
         } else {
             System.err.println("This member already isn't a member.");
