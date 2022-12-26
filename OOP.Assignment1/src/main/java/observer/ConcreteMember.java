@@ -2,6 +2,7 @@ package observer;
 
 public class ConcreteMember implements Member {
     private UndoableStringBuilder usb;
+
     /**
      * This method update this member UndoableStringBuilder to the most recent one.
      * 
@@ -17,6 +18,6 @@ public class ConcreteMember implements Member {
      * @return this UndoableStringBuilder
      */
     public UndoableStringBuilder getUsb() {
-        return usb;
+        return this.usb;
     }
 }

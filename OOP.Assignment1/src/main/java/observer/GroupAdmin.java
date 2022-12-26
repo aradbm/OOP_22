@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Arad Ben Menashe
+ * @author Arad Ben Menashe & Keren Segev
  * @version 1.0.0
  */
 public class GroupAdmin implements Sender {
@@ -39,7 +39,6 @@ public class GroupAdmin implements Sender {
             System.out.println("This member already exist in the members list.");
         } else {
             members.add(obj);
-            obj.update(usb);
         }
     }
 
@@ -51,7 +50,6 @@ public class GroupAdmin implements Sender {
     @Override
     public void unregister(Member obj) {
         if (members.contains(obj)) {
-            // obj.update(new UndoableStringBuilder()); // stops the member from pointing to GroupAdmin's usb.
             members.remove(obj);
         } else {
             System.err.println("This member already isn't a member.");
@@ -69,8 +67,7 @@ public class GroupAdmin implements Sender {
     public void insert(int offset, String obj) {
         usb.insert(offset, obj);
         updateMembers();
-    }
-
+    } 
     /**
      * Appends the specified string to this character sequence. And updates all
      * members.
