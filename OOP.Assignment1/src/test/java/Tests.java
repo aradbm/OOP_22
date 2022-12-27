@@ -13,6 +13,8 @@ public class Tests {
 
     @Test
     public void TestGroupAdmin() {
+        // JVM info
+        logger.info(() -> JvmUtilities.jvmInfo());
         // Testing the GroupAdmin class footprint and size of the linkedlist
         GroupAdmin gad = new GroupAdmin();
         logger.info(() -> JvmUtilities.objectFootprint(gad)); // checking the footprint of the GroupAdmin
