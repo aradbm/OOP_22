@@ -12,6 +12,7 @@ public class ConcreteMember implements Member {
     public void update(UndoableStringBuilder usb) {
         this.usb = usb;
     }
+
     /**
      * This method returns the corrent usb
      * 
@@ -19,5 +20,10 @@ public class ConcreteMember implements Member {
      */
     public UndoableStringBuilder getUsb() {
         return this.usb;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }
