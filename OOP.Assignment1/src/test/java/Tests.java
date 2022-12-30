@@ -19,10 +19,10 @@ public class Tests {
         GroupAdmin gad = new GroupAdmin();
         logger.info(() -> JvmUtilities.objectFootprint(gad)); // checking the footprint of the GroupAdmin
         gad.append("hello world");
-        ConcreteMember cr1 = new ConcreteMember();
-        ConcreteMember cr2 = new ConcreteMember();
-        ConcreteMember cr3 = new ConcreteMember();
-        ConcreteMember cr4 = new ConcreteMember();
+        ConcreteMember cr1 = new ConcreteMember("alise");
+        ConcreteMember cr2 = new ConcreteMember("bob");
+        ConcreteMember cr3 = new ConcreteMember("charlie");
+        ConcreteMember cr4 = new ConcreteMember("dana");
         gad.register(cr1);
         gad.register(cr2);
         gad.register(cr3);
@@ -32,13 +32,14 @@ public class Tests {
         logger.info(() -> JvmUtilities.objectFootprint(gad)); // checking the footprint of the GroupAdmin
         // when looking inside the footprint of the GroupAdmin,
         // we can see that the size of the linkedlist is 4 like it should be.
-        
-        // We are checking here if the ConcreteMembers are the same size because they have
+
+        // We are checking here if the ConcreteMembers are the same size because they
+        // have
         // the same UndoableStringBuilder pointer.
         logger.info(() -> ("Size of ConcreteMember 1:") + JvmUtilities.objectTotalSize(cr1));
         logger.info(() -> ("Size of ConcreteMember 2:") + JvmUtilities.objectTotalSize(cr2));
         assertEquals(JvmUtilities.objectTotalSize(cr1), JvmUtilities.objectTotalSize(cr2));
-        
+
         // Checking undo and delete methods on different ConcreteMembers
         gad.append("12091209");
         gad.undo();
@@ -58,13 +59,16 @@ public class Tests {
 
     @Test
     public void TestConcreteMember() {
-        
+
         GroupAdmin gad = new GroupAdmin();
-        ConcreteMember cr1 = new ConcreteMember();
+        ConcreteMember cr1 = new ConcreteMember("moshe");
         logger.info(() -> JvmUtilities.objectTotalSize(cr1));
         gad.register(cr1);
         gad.append("h");
         
+        // Testing name 
+        assertEquals("moshe", cr1.getName());
+
         // Testing the update method
         assertEquals("h", cr1.getUsb().toString());
         gad.append("ello");
